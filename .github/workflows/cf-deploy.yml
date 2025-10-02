@@ -11,8 +11,11 @@ jobs:
     name: Deploy
     steps:
       - uses: actions/checkout@v4
+      
+      # 关键修复：添加 wrangler-version 参数
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          wrangler-version: '4.30.0'  # 指定与命令兼容的版本
